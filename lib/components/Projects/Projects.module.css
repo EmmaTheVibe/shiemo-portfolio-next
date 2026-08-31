@@ -1,0 +1,84 @@
+.projects {
+  padding: 100px 24px;
+}
+
+.projectsInner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.sectionIntro {
+  max-width: 620px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 14px;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.projectsGrid :global(.card-wrapper) {
+  will-change: opacity, transform;
+}
+
+.projectsMore {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 1280px) {
+  .projects.featured {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .projectsGrid:not(.scrollRow) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scrollRow {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .scrollRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollRow :global(.card-wrapper) {
+    flex: 0 0 80%;
+    max-width: 360px;
+    scroll-snap-align: start;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 640px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+}
