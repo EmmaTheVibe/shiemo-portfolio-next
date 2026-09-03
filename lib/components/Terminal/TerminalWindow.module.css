@@ -78,12 +78,12 @@
 }
 
 .terminalLine.cmd {
-  color: var(--accent);
-  font-weight: 600;
+  color: #dc2626;
+  font-weight: 700;
 }
 
 .terminalLine.output {
-  color: rgba(7, 8, 15, 0.35);
+  color: #16a34a;
 }
 
 .terminalLine.error {
@@ -98,11 +98,11 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
 .prompt {
-  color: var(--accent);
+  color: #dc2626;
   font-size: 0.82rem;
   flex-shrink: 0;
   font-weight: 600;
@@ -114,7 +114,7 @@
   border: none;
   outline: none;
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 16px;
   caret-color: var(--accent);
 }
 
