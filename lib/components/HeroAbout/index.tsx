@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { animate, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,15 +29,16 @@ export function HeroAbout() {
   const [heroVisible, setHeroVisible] = useState(false);
   const { ref: aboutRef, visible: aboutVisible } =
     useInViewFade<HTMLDivElement>();
+  const { ref: cardSlotRef, visible: cardVisible } =
+    useInViewFade<HTMLDivElement>();
   const [dotLanded, setDotLanded] = useState(false);
   const [imageVisible, setImageVisible] = useState(false);
-  const cardSlotRef = useRef<HTMLDivElement>(null);
   const dotY = useMotionValue(0);
   const dotOpacity = useMotionValue(0);
   const blackDotY = useMotionValue(0);
 
   useEffect(() => {
-    if (!aboutVisible || !cardSlotRef.current) return;
+    if (!cardVisible || !cardSlotRef.current) return;
     const cardHeight = cardSlotRef.current.getBoundingClientRect().height;
     const start = -(cardHeight / 2 + 100);
     dotY.set(start);
@@ -61,7 +62,7 @@ export function HeroAbout() {
       clearTimeout(dotTimeout);
       clearTimeout(imageTimeout);
     };
-  }, [aboutVisible, dotY, dotOpacity, blackDotY]);
+  }, [cardVisible, cardSlotRef, dotY, dotOpacity, blackDotY]);
 
   useEffect(() => {
     if (!introComplete) return;
