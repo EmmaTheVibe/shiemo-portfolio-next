@@ -58,7 +58,7 @@ export function Navbar({ state = "expanded", onExpand, autoExpand = false }: Pro
             })}
 
             <motion.li
-              className={styles.expandable}
+              className={linksOpen ? `${styles.expandable} ${styles.expandableOpen}` : styles.expandable}
               initial={false}
               animate={{ width: linksOpen ? "auto" : 0, marginLeft: linksOpen ? 4 : 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}

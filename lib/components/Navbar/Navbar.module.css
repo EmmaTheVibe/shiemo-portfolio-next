@@ -58,6 +58,10 @@
   overflow: hidden;
 }
 
+.expandableOpen {
+  overflow: visible;
+}
+
 .navLinks {
   display: flex;
   list-style: none;
@@ -118,4 +122,15 @@
 .navLinks a:focus-visible .tooltip {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .tooltip {
+    display: none;
+  }
+
+  .navLinks a:hover {
+    color: #ffffff;
+    background: none;
+  }
 }
