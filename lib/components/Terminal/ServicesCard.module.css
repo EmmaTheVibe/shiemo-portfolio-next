@@ -1,0 +1,71 @@
+.servicesCol {
+  max-width: 420px;
+}
+
+.servicesFrame {
+  position: relative;
+  width: calc(100% - 14px);
+  margin-right: 14px;
+  margin-bottom: 14px;
+}
+
+.servicesFrameBacking {
+  position: absolute;
+  inset: 0;
+  transform: translate(14px, 14px);
+  background: var(--card-orange);
+  border: 1px solid rgba(7, 8, 15, 0.1);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.servicesCard {
+  position: relative;
+  border: 2px dashed rgba(7, 8, 15, 0.35);
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 32px 14px 24px;
+}
+
+.servicesBadge {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  transform: rotate(-6deg);
+  padding: 6px 14px;
+  border: 2px dashed var(--card-orange);
+  border-radius: 8px;
+  background: #07080f;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.servicesItemMask {
+  overflow: hidden;
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+}
+
+.servicesItem {
+  max-width: 100%;
+  width: fit-content;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border-bottom: 2px solid var(--card-orange);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #07080f;
+  will-change: transform;
+}

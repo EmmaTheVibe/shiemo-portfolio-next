@@ -1,9 +1,6 @@
-"use client";
-
-import { useRef } from "react";
 import { projects } from "@/lib/data/projects";
-import { useScrollReveal } from "./useScrollReveal";
-import { ProjectCard } from "./ProjectCard";
+import { ProjectCard } from "@/lib/components/ProjectsShowcase/ProjectCard";
+import cardStyles from "@/lib/components/ProjectsShowcase/ProjectCard.module.css";
 import styles from "./Projects.module.css";
 
 type Props = {
@@ -15,6 +12,12 @@ type Props = {
   intro?: string;
 };
 
+const RISE_STAGGER = 0.15;
+const RISE_DURATION = 0.7;
+const SEPARATE_STAGGER = 0.15;
+const COLUMNS = 3;
+const rowRiseSpan = (COLUMNS - 1) * RISE_STAGGER + RISE_DURATION;
+
 export function Projects({
   limit = projects.length,
   showAllLink = false,
@@ -23,15 +26,11 @@ export function Projects({
   title = "Things I've built",
   intro = "",
 }: Props) {
-  const sectionRef = useRef<HTMLElement>(null);
-  useScrollReveal(sectionRef);
-
   const visibleProjects = projects.slice(0, limit);
 
   return (
     <section
       id="projects"
-      ref={sectionRef}
       className={featured ? `${styles.projects} ${styles.featured}` : styles.projects}
     >
       <div className={styles.projectsInner}>
@@ -44,19 +43,30 @@ export function Projects({
           {intro && <p className={styles.sectionIntro}>{intro}</p>}
         </div>
 
-        <div className={featured ? `${styles.projectsGrid} ${styles.scrollRow}` : styles.projectsGrid}>
-          {visibleProjects.map((project) => (
-            <div key={project.id} className="card-wrapper">
-              <ProjectCard project={project} />
-            </div>
-          ))}
+        <div
+          className={featured ? `${styles.projectsGrid} ${styles.scrollRow}` : styles.projectsGrid}
+        >
+          {visibleProjects.map((project, i) => {
+            const col = i % COLUMNS;
+            return (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                riseDelay={col * RISE_STAGGER}
+                separateDelay={rowRiseSpan + col * SEPARATE_STAGGER}
+              />
+            );
+          })}
         </div>
 
         {showAllLink && (
           <div className={styles.projectsMore}>
-            <a href="/projects" className="btn-secondary">
-              See all projects
-            </a>
+            <span className={cardStyles.extraLinkWrap}>
+              <span className={cardStyles.extraLinkBacking} />
+              <a href="/projects" className={cardStyles.extraLink}>
+                See all projects
+              </a>
+            </span>
           </div>
         )}
       </div>

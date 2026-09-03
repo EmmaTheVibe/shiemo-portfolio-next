@@ -1,0 +1,343 @@
+.wrapper {
+  position: relative;
+}
+
+.grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 80px;
+}
+
+.heroWrap {
+  background-color: var(--card-orange);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 16px 60px;
+}
+
+.heroRow {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1440px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 40px;
+}
+
+.heroRow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(7, 8, 15, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 8, 15, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroBlock {
+  position: relative;
+  z-index: 1;
+}
+
+.heroImageCol {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.avatarFrame {
+  position: relative;
+  width: calc(100% - 14px);
+  max-width: 320px;
+  margin-right: 14px;
+  margin-bottom: 14px;
+}
+
+.avatarFrameBacking {
+  position: absolute;
+  inset: 0;
+  background: var(--card-orange);
+  border: 1px solid rgba(7, 8, 15, 0.1);
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.avatar {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border: 2px dashed rgba(7, 8, 15, 0.35);
+  background: #ffffff;
+  object-fit: cover;
+}
+
+.secondCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+  gap: 40px;
+}
+
+.aboutBlock {
+  align-self: stretch;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aboutBlock.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.aboutText {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--card-orange);
+  text-decoration: underline;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 24px;
+  transition: gap 0.2s;
+}
+
+.moreLink:hover {
+  gap: 10px;
+}
+
+.cardSlot {
+  position: relative;
+  align-self: center;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 6 / 7;
+  margin: 40px auto 0;
+}
+
+.cardDot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -14px;
+  margin-left: -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card-orange);
+  z-index: 0;
+}
+
+.cardDotBlack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -14px;
+  margin-left: -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #07080f;
+  z-index: 0;
+}
+
+.cardMat {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  transition: background-color 1.2s ease;
+}
+
+.cardMatVisible {
+  background: var(--card-orange);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.1;
+  transition: opacity 1.2s ease;
+}
+
+.cardImageVisible {
+  opacity: 1;
+}
+
+.techCol {
+  max-width: 420px;
+}
+
+.techFrame {
+  position: relative;
+  margin-right: 14px;
+  margin-bottom: 14px;
+}
+
+.techFrameBacking {
+  position: absolute;
+  inset: 0;
+  transform: translate(14px, 14px);
+  background: var(--card-orange);
+  border: 1px solid rgba(7, 8, 15, 0.1);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.techCard {
+  position: relative;
+  border: 2px dashed rgba(7, 8, 15, 0.35);
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 32px 14px 24px;
+}
+
+.techBadge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  transform: rotate(6deg);
+  padding: 6px 14px;
+  border: 2px dashed var(--card-orange);
+  border-radius: 8px;
+  background: #07080f;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.techChipMask {
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 9999px;
+}
+
+.techChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1.5px dashed rgba(7, 8, 15, 0.35);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: #ffffff;
+  color: #07080f;
+  cursor: default;
+  will-change: transform;
+}
+
+.techIcon {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: #07080f;
+  font-weight: 700;
+}
+
+@media (min-width: 481px) {
+  .grid,
+  .heroWrap {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 650px) {
+  .heroRow {
+    grid-template-columns: 1fr 1fr;
+    padding: 48px;
+    gap: 80px;
+  }
+}
+
+@media (min-width: 901px) {
+  .grid {
+    flex-direction: row;
+  }
+
+  .heroWrap {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .cardSlot {
+    margin: 0;
+  }
+
+  .aboutText {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    align-items: stretch;
+  }
+
+  .cardSlot {
+    align-self: flex-start;
+  }
+
+  .secondCol {
+    flex-direction: row;
+  }
+
+  .techCol {
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: 1281px) {
+  .cardSlot {
+    max-width: 360px;
+  }
+}

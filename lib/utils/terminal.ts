@@ -5,10 +5,7 @@ export type TerminalLine = {
   text: string;
 };
 
-export const initialTerminalHistory: TerminalLine[] = [
-  { type: "info", text: "Type 'help' to see available commands." },
-  { type: "info", text: "" },
-];
+export const initialTerminalHistory: TerminalLine[] = [];
 
 export const terminalCommands: Record<string, () => string[]> = {
   help: () => [

@@ -1,7 +1,30 @@
 .terminalWindow {
+  position: relative;
+}
+
+.terminalWindowInner {
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 60px color-mix(in srgb, var(--accent) 8%, transparent);
+  background: transparent;
+  border: 2px dashed rgba(7, 8, 15, 0.35);
+}
+
+.terminalBadge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  z-index: 1;
+  transform: rotate(6deg);
+  padding: 6px 14px;
+  border: 2px dashed var(--card-orange);
+  border-radius: 8px;
+  background: #07080f;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .terminalBar {
@@ -9,8 +32,8 @@
   align-items: center;
   gap: 12px;
   padding: 14px 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid var(--border);
+  background: var(--card-orange);
+  border-bottom: 2px dashed var(--border);
 }
 
 .dots {
@@ -36,17 +59,9 @@
   background: #28c840;
 }
 
-.terminalTitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  flex: 1;
-  text-align: center;
-}
-
 .terminalBody {
   padding: 24px;
-  min-height: 320px;
-  max-height: 420px;
+  height: 320px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -64,10 +79,11 @@
 
 .terminalLine.cmd {
   color: var(--accent);
+  font-weight: 600;
 }
 
 .terminalLine.output {
-  color: #94a3b8;
+  color: rgba(7, 8, 15, 0.35);
 }
 
 .terminalLine.error {
@@ -75,7 +91,7 @@
 }
 
 .terminalLine.info {
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .terminalInputRow {
@@ -89,6 +105,7 @@
   color: var(--accent);
   font-size: 0.82rem;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .terminalInput {
@@ -105,6 +122,34 @@
   outline: none;
 }
 
-.terminalInput::placeholder {
-  color: var(--text-dim);
+.hintLine {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  min-height: 1.4em;
+}
+
+.hintCaret {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: -0.12em;
+  animation: caret-blink 0.9s steps(2, start) infinite;
+}
+
+.hintCaret.done {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  46%,
+  100% {
+    opacity: 0;
+  }
 }

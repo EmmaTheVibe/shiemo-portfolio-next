@@ -1,0 +1,88 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panels {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+}
+
+.textWrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2px, 1vw, 10px);
+}
+
+.letterMask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.letter {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  line-height: 1;
+  color: #000;
+}
+
+.iCol {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  line-height: 0.5;
+}
+
+.iPillBacking {
+  position: absolute;
+  top: -0.45em;
+  left: 50%;
+  display: inline-flex;
+  border-radius: 9999px;
+  background: #07080f;
+}
+
+.iPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 8, 15, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 8px;
+}
+
+.iPillIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(248, 250, 252, 0.15);
+  color: #f8fafc;
+}
+
+@media (max-width: 480px) {
+  .iPillBacking {
+    top: -0.75em;
+  }
+}

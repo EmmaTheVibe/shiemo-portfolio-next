@@ -1,5 +1,5 @@
 .contact {
-  padding: 100px 24px;
+  padding: 140px 16px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -14,14 +14,21 @@
   max-width: 1440px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr;
+  gap: 48px;
   align-items: start;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 481px) {
+  .contact {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 769px) {
   .contactInner {
-    grid-template-columns: 1fr;
-    gap: 48px;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
   }
 }

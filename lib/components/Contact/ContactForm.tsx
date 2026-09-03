@@ -1,14 +1,40 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useContactForm } from "./useContactForm";
+import { useInViewFade } from "@/lib/hooks/useInViewFade";
 import styles from "./ContactForm.module.css";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function ContactForm() {
   const { name, setName, email, setEmail, message, setMessage, status, toast, errors, clearError, handleSubmit } =
     useContactForm();
+  const { ref, visible } = useInViewFade<HTMLDivElement>();
 
   return (
-    <div className={`${styles.contactRight} glass`}>
+    <motion.div
+      ref={ref}
+      className={styles.cardWrap}
+      initial={{ y: 60, opacity: 0 }}
+      animate={visible ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
+      transition={{ duration: 0.7, ease: EASE }}
+    >
+      <motion.div
+        className={styles.cardBacking}
+        initial={{ x: 0, y: 0 }}
+        animate={{
+          x: visible ? 14 : 0,
+          y: visible ? 14 : 0,
+          backgroundColor: toast?.type === "error" ? "#ef4444" : "#e8964f",
+        }}
+        transition={{
+          x: { duration: 0.5, ease: EASE, delay: 0.7 },
+          y: { duration: 0.5, ease: EASE, delay: 0.7 },
+          backgroundColor: { duration: 0.3, ease: EASE },
+        }}
+      />
+      <div className={styles.contactRight}>
       <form onSubmit={handleSubmit} noValidate className={styles.form}>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>
@@ -88,30 +114,40 @@ export function ContactForm() {
           )}
         </div>
 
-        <button type="submit" className={`btn-primary ${styles.submitBtn}`} disabled={status === "sending"}>
-          {status === "sending" ? (
-            "Sending..."
-          ) : (
-            <>
-              Get In Touch
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </>
-          )}
-        </button>
+        <span className={status === "sending" ? `${styles.submitBtnStack} ${styles.disabled}` : styles.submitBtnStack}>
+          <span className={styles.submitBtnBacking} />
+          <button type="submit" className={styles.submitBtn} disabled={status === "sending"}>
+            {status === "sending" ? (
+              "Sending..."
+            ) : (
+              <>
+                Get In Touch
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </>
+            )}
+          </button>
+        </span>
       </form>
 
-      {toast && (
-        <div
-          className={toast.type === "success" ? `${styles.toast} ${styles.success}` : styles.toast}
-          role="status"
-          aria-live="polite"
-        >
-          {toast.message}
-        </div>
-      )}
-    </div>
+      <AnimatePresence>
+        {toast && toast.type === "success" && (
+          <motion.div
+            className={styles.successBadge}
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, scale: 0, rotate: -6 }}
+            animate={{ opacity: 1, scale: 1, rotate: -6 }}
+            exit={{ opacity: 0, scale: 0, rotate: -6 }}
+            transition={{ duration: 0.3, ease: EASE }}
+          >
+            {toast.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      </div>
+    </motion.div>
   );
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Navbar } from "@/lib/components/Navbar";
 import { Footer } from "@/lib/components/Footer";
+import { SiteChrome } from "@/lib/components/SiteChrome";
+import { IntroCompleteProvider } from "@/lib/context/IntroCompleteContext";
 import "./globals.css";
 
 const syne = Syne({
@@ -19,7 +20,7 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   openGraph: {
-    images: ["https://shiemo.dev/socials.jpg"],
+    images: ["https://shiemo.dev/socials.png"],
     type: "website",
   },
   twitter: {
@@ -32,9 +33,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${syne.variable} ${dmMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <IntroCompleteProvider>
+          <SiteChrome />
+          <main>{children}</main>
+          <Footer />
+        </IntroCompleteProvider>
         <Analytics />
       </body>
     </html>

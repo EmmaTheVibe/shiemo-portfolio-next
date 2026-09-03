@@ -74,7 +74,7 @@ export function useContactForm() {
       setName("");
       setEmail("");
       setMessage("");
-      showToast("success", "Message sent. I'll get back to you soon.");
+      showToast("success", "Message sent!");
     } catch (error) {
       console.error("Email send error:", error);
       showToast("error", "Message failed to send. Please try again.");
