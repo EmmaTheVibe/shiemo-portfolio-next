@@ -123,7 +123,8 @@ export function HeroAbout() {
         </div>
       </StackPanel>
 
-      <StackPanel>
+      {/* TEMP DEBUG: red About panel to identify the fast-scroll flash. Revert to <StackPanel>. */}
+      <StackPanel background="red">
         <div className={styles.aboutHeader}>
           <HangingTag label="About me" />
           <h2 className={styles.headerTitle}>
