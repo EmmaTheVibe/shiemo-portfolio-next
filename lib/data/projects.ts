@@ -11,7 +11,23 @@ export type Project = {
   featured: boolean;
 };
 
+// Order matters: the first three are the homepage's featured projects.
+// Ids are stable lookups (e.g. the ao2 card), so they don't follow the order.
 export const projects: Project[] = [
+  {
+    id: 5,
+    title: "W.A.V.E.S",
+    description:
+      "WAEC Attendance Verification System: nationwide digital attendance verification for CBWASSCE examinations.",
+    longDescription:
+      "W.A.V.E.S (WAEC Attendance Verification System) enables nationwide digital attendance verification during CBWASSCE examinations, reducing attendance reconciliation time by approximately 50%. Built to handle scale across multiple examination centres simultaneously.",
+    tech: ["Next.js", "TypeScript", "PostgreSQL"],
+    live: "https://waec-attendance-checker.vercel.app/",
+    github: null,
+    image: "/waves.avif",
+    gif: "/waec.gif",
+    featured: true,
+  },
   {
     id: 1,
     title: "Coinview",
@@ -42,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Jadoo Landing Page",
+    title: "Jadoo",
     description:
       "Modern landing page for a travel agency featuring animated card stacks and carousels.",
     longDescription:
@@ -66,20 +82,6 @@ export const projects: Project[] = [
     github: "https://github.com/EmmaTheVibe/weather-now",
     image: "/weather.avif",
     gif: "/weathernow.gif",
-    featured: true,
-  },
-  {
-    id: 5,
-    title: "WAEC Attendance Tracker",
-    description:
-      "Nationwide digital attendance monitoring system for CBWASSCE examinations.",
-    longDescription:
-      "Enables nationwide digital attendance monitoring during CBWASSCE examinations, reducing attendance reconciliation time by approximately 50%. Built to handle scale across multiple examination centres simultaneously.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL"],
-    live: "https://waec-attendance-checker.vercel.app/",
-    github: null,
-    image: "/waec.avif",
-    gif: "/waec.gif",
     featured: true,
   },
   {

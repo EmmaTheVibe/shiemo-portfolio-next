@@ -1,0 +1,17 @@
+/* Every panel is at least a full (large) viewport tall so it fully covers
+   the one beneath it. Panels share a z-index, so later ones stack on top. */
+.panel {
+  position: sticky;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100lvh;
+  background: var(--panel-bg, var(--bg));
+}
+
+.panel + .panel {
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -12px 40px rgba(7, 8, 15, 0.12);
+  /* Keep only the upward shadow; the blur would otherwise bleed past the
+     bottom edge, which shows on the last panel. */
+  clip-path: inset(-60px 0 0 0);
+}

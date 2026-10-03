@@ -1,4 +1,5 @@
 import { projects } from "@/lib/data/projects";
+import { HangingTag } from "@/lib/components/HangingTag";
 import { ProjectCard } from "@/lib/components/ProjectsShowcase/ProjectCard";
 import cardStyles from "@/lib/components/ProjectsShowcase/ProjectCard.module.css";
 import styles from "./Projects.module.css";
@@ -35,7 +36,7 @@ export function Projects({
     >
       <div className={styles.projectsInner}>
         <div className={styles.sectionHeader}>
-          <p className="section-label">{label}</p>
+          <HangingTag label={label} />
           <h2 className={styles.sectionTitle}>
             {title}
             <span className="accent-dot">.</span>

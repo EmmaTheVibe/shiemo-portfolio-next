@@ -1,11 +1,21 @@
-.wrapper {
-  position: relative;
+.aboutHeader {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 50px 16px 0;
+}
+
+.headerTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 12px;
+  letter-spacing: -0.02em;
 }
 
 .grid {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 100px 16px;
+  padding: 48px 16px 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -14,8 +24,7 @@
 }
 
 .heroWrap {
-  background-color: var(--card-orange);
-  min-height: 100dvh;
+  --panel-bg: var(--card-orange);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,6 +293,7 @@
 }
 
 @media (min-width: 481px) {
+  .aboutHeader,
   .grid,
   .heroWrap {
     padding-left: 24px;
@@ -337,6 +347,10 @@
 }
 
 @media (min-width: 1281px) {
+  .aboutHeader {
+    padding-top: 100px;
+  }
+
   .cardSlot {
     max-width: 360px;
   }

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { animate, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { HangingTag } from "@/lib/components/HangingTag";
 import { HeroIntro } from "@/lib/components/Hero/HeroIntro";
+import { StackPanel } from "@/lib/components/StackPanel";
 import { useInViewFade } from "@/lib/hooks/useInViewFade";
 import { useIntroComplete } from "@/lib/context/IntroCompleteContext";
 import styles from "./HeroAbout.module.css";
@@ -36,6 +38,7 @@ export function HeroAbout() {
   const dotY = useMotionValue(0);
   const dotOpacity = useMotionValue(0);
   const blackDotY = useMotionValue(0);
+  const blackDotOpacity = useMotionValue(0);
 
   useEffect(() => {
     if (!cardVisible || !cardSlotRef.current) return;
@@ -44,11 +47,15 @@ export function HeroAbout() {
     dotY.set(start);
     dotOpacity.set(0);
     blackDotY.set(start);
+    blackDotOpacity.set(0);
 
+    // Dots fade in as they fall so they don't appear on top of the heading
+    // above the card; easeIn keeps them faint while they pass it.
+    const blackOpacityControls = animate(blackDotOpacity, 1, { duration: 1, ease: "easeIn" });
     const blackYControls = animate(blackDotY, 0, { duration: 2.5, ease: "easeOut" });
     const imageTimeout = setTimeout(() => setImageVisible(true), 400);
 
-    const opacityControls = animate(dotOpacity, 1, { duration: 0, delay: 1 });
+    const opacityControls = animate(dotOpacity, 1, { duration: 1, ease: "easeIn", delay: 1 });
     const yControls = animate(dotY, 0, {
       duration: 2.5,
       ease: "easeOut",
@@ -59,10 +66,11 @@ export function HeroAbout() {
       yControls.stop();
       opacityControls.stop();
       blackYControls.stop();
+      blackOpacityControls.stop();
       clearTimeout(dotTimeout);
       clearTimeout(imageTimeout);
     };
-  }, [cardVisible, cardSlotRef, dotY, dotOpacity, blackDotY]);
+  }, [cardVisible, cardSlotRef, dotY, dotOpacity, blackDotY, blackDotOpacity]);
 
   useEffect(() => {
     if (!introComplete) return;
@@ -71,8 +79,8 @@ export function HeroAbout() {
   }, [introComplete]);
 
   return (
-    <div className={styles.wrapper}>
-      <div id="home" className={styles.heroWrap}>
+    <>
+      <StackPanel id="home" className={styles.heroWrap}>
         <div className={styles.heroRow}>
           <div className={styles.heroBlock}>
             <HeroIntro visible={heroVisible} />
@@ -113,128 +121,139 @@ export function HeroAbout() {
             </motion.div>
           </div>
         </div>
-      </div>
+      </StackPanel>
 
-      <div className={styles.grid}>
-        <div ref={cardSlotRef} className={styles.cardSlot}>
-          <motion.span
-            className={styles.cardDot}
-            style={{ y: dotY, opacity: dotOpacity }}
-          />
-          <motion.span className={styles.cardDotBlack} style={{ y: blackDotY }} />
-          <div
-            className={
-              dotLanded
-                ? `${styles.cardMat} ${styles.cardMatVisible}`
-                : styles.cardMat
-            }
-          >
-            <Image
-              src="/avatar2.png"
-              alt="Onagaumah Emmanuel"
-              width={448}
-              height={594}
-              className={
-                imageVisible
-                  ? `${styles.cardImage} ${styles.cardImageVisible}`
-                  : styles.cardImage
-              }
-            />
-          </div>
+      <StackPanel>
+        <div className={styles.aboutHeader}>
+          <HangingTag label="About me" />
+          <h2 className={styles.headerTitle}>
+            Meet Shiemo<span className="accent-dot">.</span>
+          </h2>
         </div>
-
-        <div className={styles.secondCol}>
-          <div
-            id="about"
-            ref={aboutRef}
-            className={
-              aboutVisible
-                ? `${styles.aboutBlock} ${styles.visible}`
-                : styles.aboutBlock
-            }
-          >
-            <h2 className={styles.sectionTitle}>
-              About me<span className="accent-dot">.</span>
-            </h2>
-            <p className={styles.aboutText}>
-              I&apos;m passionate about building products that solve real
-              problems and create meaningful impact. I focus on writing clean,
-              efficient code and crafting seamless user experiences.
-            </p>
-            <p className={styles.aboutText} style={{ marginTop: "16px" }}>
-              I enjoy transforming complex problems into simple, elegant and
-              human centered solutions across SaaS, fintech, and edutech.
-            </p>
-            <Link href="/contact" className={styles.moreLink}>
-              Reach out
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
+        <div className={styles.grid}>
+          <div ref={cardSlotRef} className={styles.cardSlot}>
+            <motion.span
+              className={styles.cardDot}
+              style={{ y: dotY, opacity: dotOpacity }}
+            />
+            <motion.span
+              className={styles.cardDotBlack}
+              style={{ y: blackDotY, opacity: blackDotOpacity }}
+            />
+            <div
+              className={
+                dotLanded
+                  ? `${styles.cardMat} ${styles.cardMatVisible}`
+                  : styles.cardMat
+              }
+            >
+              <Image
+                src="/avatar2.png"
+                alt="Onagaumah Emmanuel"
+                width={448}
+                height={594}
+                className={
+                  imageVisible
+                    ? `${styles.cardImage} ${styles.cardImageVisible}`
+                    : styles.cardImage
+                }
+              />
+            </div>
           </div>
 
-          <div className={styles.techCol}>
-            <motion.div
-              className={styles.techFrame}
-              initial={{ rotate: 0 }}
-              animate={{ rotate: aboutVisible ? -2 : 0 }}
-              transition={{
-                duration: 0.8,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 1.2,
-              }}
+          <div className={styles.secondCol}>
+            <div
+              id="about"
+              ref={aboutRef}
+              className={
+                aboutVisible
+                  ? `${styles.aboutBlock} ${styles.visible}`
+                  : styles.aboutBlock
+              }
             >
+              <h2 className={styles.sectionTitle}>
+                About me<span className="accent-dot">.</span>
+              </h2>
+              <p className={styles.aboutText}>
+                I&apos;m passionate about building products that solve real
+                problems and create meaningful impact. I focus on writing clean,
+                efficient code and crafting seamless user experiences.
+              </p>
+              <p className={styles.aboutText} style={{ marginTop: "16px" }}>
+                I enjoy transforming complex problems into simple, elegant and
+                human centered solutions across SaaS, fintech, and edutech.
+              </p>
+              <Link href="/contact" className={styles.moreLink}>
+                Reach out
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
+
+            <div className={styles.techCol}>
               <motion.div
-                className={styles.techFrameBacking}
-                initial={{ x: 0, y: 0, rotate: 0 }}
-                animate={
-                  aboutVisible
-                    ? { x: 14, y: 14, rotate: 3 }
-                    : { x: 0, y: 0, rotate: 0 }
-                }
+                className={styles.techFrame}
+                initial={{ rotate: 0 }}
+                animate={{ rotate: aboutVisible ? -2 : 0 }}
                 transition={{
                   duration: 0.8,
                   ease: [0.16, 1, 0.3, 1],
                   delay: 1.2,
                 }}
-              />
-              <div className={styles.techCard}>
-                <span className={styles.techBadge}>My stack</span>
-                <div className={styles.techGrid}>
-                  {TECHS.map((tech, i) => (
-                    <span key={tech.name} className={styles.techChipMask}>
-                      <motion.div
-                        className={styles.techChip}
-                        initial={{ y: "100%" }}
-                        animate={{ y: aboutVisible ? 0 : "100%" }}
-                        whileHover={{ y: -2 }}
-                        transition={{
-                          delay: i * CHIP_STAGGER,
-                          type: "spring",
-                          stiffness: 260,
-                          damping: 20,
-                          mass: 0.6,
-                        }}
-                      >
-                        <span className={styles.techIcon}>{tech.icon}</span>
-                        {tech.name}
-                      </motion.div>
-                    </span>
-                  ))}
+              >
+                <motion.div
+                  className={styles.techFrameBacking}
+                  initial={{ x: 0, y: 0, rotate: 0 }}
+                  animate={
+                    aboutVisible
+                      ? { x: 14, y: 14, rotate: 3 }
+                      : { x: 0, y: 0, rotate: 0 }
+                  }
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 1.2,
+                  }}
+                />
+                <div className={styles.techCard}>
+                  <span className={styles.techBadge}>My stack</span>
+                  <div className={styles.techGrid}>
+                    {TECHS.map((tech, i) => (
+                      <span key={tech.name} className={styles.techChipMask}>
+                        <motion.div
+                          className={styles.techChip}
+                          initial={{ y: "100%" }}
+                          animate={{ y: aboutVisible ? 0 : "100%" }}
+                          whileHover={{ y: -2 }}
+                          transition={{
+                            delay: i * CHIP_STAGGER,
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 20,
+                            mass: 0.6,
+                          }}
+                        >
+                          <span className={styles.techIcon}>{tech.icon}</span>
+                          {tech.name}
+                        </motion.div>
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </StackPanel>
+    </>
   );
 }

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Footer } from "@/lib/components/Footer";
-import { SiteChrome } from "@/lib/components/SiteChrome";
-import { IntroCompleteProvider } from "@/lib/context/IntroCompleteContext";
 import "./globals.css";
 
 const syne = Syne({
@@ -33,11 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${syne.variable} ${dmMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <IntroCompleteProvider>
-          <SiteChrome />
-          <main>{children}</main>
-          <Footer />
-        </IntroCompleteProvider>
+        {children}
         <Analytics />
       </body>
     </html>

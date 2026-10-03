@@ -15,17 +15,18 @@ export function useCommandHistory() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [history]);
 
-  function run() {
-    const cmd = input.trim().toLowerCase();
+  function runCommand(raw: string) {
+    const text = raw.trim();
+    const cmd = text.toLowerCase();
     if (!cmd) return;
 
-    cmdHistoryRef.current = [input.trim(), ...cmdHistoryRef.current.slice(0, 19)];
+    cmdHistoryRef.current = [text, ...cmdHistoryRef.current.slice(0, 19)];
     cmdHistoryIndexRef.current = -1;
 
     setHistory((prev) => {
       if (cmd === "clear") return [];
 
-      const next: TerminalLine[] = [...prev, { type: "cmd", text: `$ ${input.trim()}` }];
+      const next: TerminalLine[] = [...prev, { type: "cmd", text: `$ ${text}` }];
 
       if (cmd in terminalCommands) {
         const lines = terminalCommands[cmd]();
@@ -40,13 +41,12 @@ export function useCommandHistory() {
         },
       ];
     });
-
-    setInput("");
   }
 
   function handleKeydown(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      run();
+      runCommand(input);
+      setInput("");
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       if (cmdHistoryIndexRef.current < cmdHistoryRef.current.length - 1) {
@@ -65,5 +65,5 @@ export function useCommandHistory() {
     }
   }
 
-  return { input, setInput, history, terminalRef, handleKeydown };
+  return { input, setInput, history, terminalRef, handleKeydown, runCommand };
 }

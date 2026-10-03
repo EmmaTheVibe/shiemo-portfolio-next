@@ -1,0 +1,93 @@
+/* Pin-to-tag distance. Matches the homepage stacking sections' top padding
+   (50px, 100px from 1281px) minus the pin's 14px inset from the sheet edge.
+   The projects and contact pages pad 140px, so there the pin just sits a
+   little lower, still clear of the fixed navbar. */
+.hangWrap {
+  --string: 36px;
+  --eyelet-ring: var(--card-orange);
+  position: relative;
+  display: inline-block;
+  /* Never stretch (e.g. in a flex column): the pin centres on this box. */
+  width: fit-content;
+}
+
+/* Orange sections: dark pin, white eyelet ring. */
+.dark {
+  --eyelet-ring: #ffffff;
+}
+
+.pin {
+  position: absolute;
+  top: calc(-1 * var(--string) - 6px);
+  left: 50%;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f6c193, var(--card-orange) 55%, #b8682a);
+  box-shadow: 1px 2px 2px rgba(7, 8, 15, 0.35);
+}
+
+.dark .pin {
+  background: radial-gradient(circle at 35% 35%, #6b6b74, #07080f 60%);
+}
+
+/* Shadow sits on a non-rotating layer so the light stays fixed while the tag
+   swings. The pin is outside it: pressed into the sheet, it only gets a small one. */
+.cast {
+  filter: drop-shadow(5px 9px 6px rgba(7, 8, 15, 0.28));
+}
+
+/* Pivots around the pin. */
+.hanger {
+  position: relative;
+  transform-origin: 50% calc(-1 * var(--string));
+}
+
+.string {
+  position: absolute;
+  bottom: calc(100% - 9px);
+  left: 50%;
+  width: 1.5px;
+  height: calc(var(--string) + 9px);
+  margin-left: -0.75px;
+  background: #07080f;
+}
+
+/* Hangs level instead of the usual tilt; extra top padding makes room for the hole.
+   Grabbable: no page scroll when dragged by touch, and (prefixed for iOS
+   Safari) no text selection, long-press callout or tap flash. */
+.hanger .label {
+  position: relative;
+  padding-top: 18px;
+  transform: none;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hanger .label:active {
+  cursor: grabbing;
+}
+
+.eyelet {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border: 1.5px solid var(--eyelet-ring);
+  border-radius: 50%;
+  background: var(--panel-bg, var(--bg));
+}
+
+@media (min-width: 1281px) {
+  .hangWrap {
+    --string: 86px;
+  }
+}

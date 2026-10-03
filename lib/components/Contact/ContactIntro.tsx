@@ -1,10 +1,11 @@
 import { social } from "@/lib/data/projects";
+import { HangingTag } from "@/lib/components/HangingTag";
 import styles from "./ContactIntro.module.css";
 
 export function ContactIntro() {
   return (
     <div>
-      <p className="section-label">Let&apos;s Work Together</p>
+      <HangingTag label="Let's Work Together" />
       <h2 className={styles.sectionTitle}>
         Got a project
         <br />
