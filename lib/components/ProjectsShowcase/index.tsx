@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { HangingTag } from "@/lib/components/HangingTag";
 import { projects } from "@/lib/data/projects";
+import { largeViewportHeight } from "@/lib/utils/viewport";
 import styles from "./ProjectsShowcase.module.css";
 
 const SHOWCASE = projects.slice(0, 3);
@@ -87,7 +88,7 @@ export function ProjectsShowcase() {
       const el = scrubRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const range = rect.height - window.innerHeight;
+      const range = rect.height - largeViewportHeight();
       scrollYProgress.set(range > 0 ? Math.min(1, Math.max(0, -rect.top / range)) : 0);
     };
     update();
@@ -122,7 +123,7 @@ export function ProjectsShowcase() {
     const el = scrubRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const range = rect.height - window.innerHeight;
+    const range = rect.height - largeViewportHeight();
     const target = OPEN_END + i * STEP + STEP * 0.2;
     window.scrollTo({ top: window.scrollY + rect.top + range * target, behavior: "smooth" });
   };

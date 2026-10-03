@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { largeViewportHeight } from "@/lib/utils/viewport";
 import styles from "./StackPanel.module.css";
 
 type StackPanelProps = {
@@ -24,7 +25,9 @@ export function StackPanel({ children, className, id, background }: StackPanelPr
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const update = () => setTop(Math.min(0, window.innerHeight - el.offsetHeight));
+    // Large viewport height, not innerHeight: on iOS the latter changes as the
+    // address bar collapses, which would shift a pinned panel mid-scroll.
+    const update = () => setTop(Math.min(0, largeViewportHeight() - el.offsetHeight));
     update();
     const observer = new ResizeObserver(update);
     observer.observe(el);

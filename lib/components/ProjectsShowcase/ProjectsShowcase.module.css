@@ -1,6 +1,14 @@
-/* Tall section; the stage pins while the scroll inside it drives the laptop. */
+/* Tall section; the stage pins while the scroll inside it drives the laptop.
+   Shorter below 1024px, where 4 screens of swiping felt long; the timeline
+   is measured as a fraction of this height, so everything scales with it. */
 .scrub {
-  height: 400vh;
+  height: 280vh;
+}
+
+@media (min-width: 1024px) {
+  .scrub {
+    height: 400vh;
+  }
 }
 
 .stage {
