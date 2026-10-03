@@ -1,17 +1,46 @@
 /* Every panel is at least a full (large) viewport tall so it fully covers
-   the one beneath it. Panels share a z-index, so later ones stack on top. */
+   the one beneath it. Panels share a z-index, so later ones stack on top.
+   z-index also makes each panel a stacking context, so the cap and fill
+   (z-index: -1) sit behind its content but above the panel beneath. */
 .panel {
   position: sticky;
   z-index: 1;
   min-height: 100vh;
   min-height: 100lvh;
-  background: var(--panel-bg, var(--bg));
 }
 
-.panel + .panel {
+/* The panel's background, on its own plain, solid-colour layer. Browsers draw
+   such a layer instantly rather than tile by tile, so it can't lag behind a
+   fast scroll the way a big rounded, shadowed sheet did (that lag briefly
+   exposed the panel beneath). */
+.fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--panel-bg, var(--bg));
+  will-change: transform;
+}
+
+/* Rounded top and upward shadow for panels that slide over another. Kept to
+   a thin strip so the expensive shape stays small; the fill starts just under
+   the curve (1px overlap avoids a seam). */
+.cap {
+  display: none;
+}
+
+.panel + .panel .cap {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 33px;
   border-radius: 32px 32px 0 0;
+  background: var(--panel-bg, var(--bg));
   box-shadow: 0 -12px 40px rgba(7, 8, 15, 0.12);
-  /* Keep only the upward shadow; the blur would otherwise bleed past the
-     bottom edge, which shows on the last panel. */
-  clip-path: inset(-60px 0 0 0);
+}
+
+.panel + .panel .fill {
+  top: 32px;
 }

@@ -45,6 +45,11 @@ export function StackPanel({ children, className, id, background }: StackPanelPr
       className={className ? `${styles.panel} ${className}` : styles.panel}
       style={{ top, ...(background && { "--panel-bg": background }) } as CSSProperties}
     >
+      {/* Background split in two so a fast fling can't expose the panel
+          beneath: see StackPanel.module.css. Cap first so the fill covers
+          the downward half of its shadow. */}
+      <span className={styles.cap} aria-hidden="true" />
+      <span className={styles.fill} aria-hidden="true" />
       {children}
     </div>
   );
