@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { animate, motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { HangingTag } from "@/lib/components/HangingTag";
@@ -31,47 +31,6 @@ export function HeroAbout() {
   const [heroVisible, setHeroVisible] = useState(false);
   const { ref: aboutRef, visible: aboutVisible } =
     useInViewFade<HTMLDivElement>();
-  const { ref: cardSlotRef, visible: cardVisible } =
-    useInViewFade<HTMLDivElement>();
-  const [dotLanded, setDotLanded] = useState(false);
-  const [imageVisible, setImageVisible] = useState(false);
-  const dotY = useMotionValue(0);
-  const dotOpacity = useMotionValue(0);
-  const blackDotY = useMotionValue(0);
-  const blackDotOpacity = useMotionValue(0);
-
-  useEffect(() => {
-    if (!cardVisible || !cardSlotRef.current) return;
-    const cardHeight = cardSlotRef.current.getBoundingClientRect().height;
-    const start = -(cardHeight / 2 + 100);
-    dotY.set(start);
-    dotOpacity.set(0);
-    blackDotY.set(start);
-    blackDotOpacity.set(0);
-
-    // Dots fade in as they fall so they don't appear on top of the heading
-    // above the card; easeIn keeps them faint while they pass it.
-    const blackOpacityControls = animate(blackDotOpacity, 1, { duration: 1, ease: "easeIn" });
-    const blackYControls = animate(blackDotY, 0, { duration: 2.5, ease: "easeOut" });
-    const imageTimeout = setTimeout(() => setImageVisible(true), 400);
-
-    const opacityControls = animate(dotOpacity, 1, { duration: 1, ease: "easeIn", delay: 1 });
-    const yControls = animate(dotY, 0, {
-      duration: 2.5,
-      ease: "easeOut",
-      delay: 1,
-    });
-    const dotTimeout = setTimeout(() => setDotLanded(true), 1400);
-    return () => {
-      yControls.stop();
-      opacityControls.stop();
-      blackYControls.stop();
-      blackOpacityControls.stop();
-      clearTimeout(dotTimeout);
-      clearTimeout(imageTimeout);
-    };
-  }, [cardVisible, cardSlotRef, dotY, dotOpacity, blackDotY, blackDotOpacity]);
-
   useEffect(() => {
     if (!introComplete) return;
     const timeout = setTimeout(() => setHeroVisible(true), 100);
@@ -131,35 +90,34 @@ export function HeroAbout() {
           </h2>
         </div>
         <div className={styles.grid}>
-          <div ref={cardSlotRef} className={styles.cardSlot}>
+          <motion.div
+            className={styles.cardSlot}
+            initial="hidden"
+            whileInView="shown"
+            viewport={{ once: false, amount: 0.3 }}
+          >
             <motion.span
-              className={styles.cardDot}
-              style={{ y: dotY, opacity: dotOpacity }}
+              className={styles.cardBacking}
+              variants={{
+                // Reset instantly on exit so a quick scroll back replays the
+                // full slide instead of resuming from wherever it got to.
+                hidden: { x: "-100%", transition: { duration: 0 } },
+                shown: {
+                  x: 0,
+                  transition: { duration: 1, ease: [0.65, 0, 0.35, 1], delay: 0.03 },
+                },
+              }}
             />
-            <motion.span
-              className={styles.cardDotBlack}
-              style={{ y: blackDotY, opacity: blackDotOpacity }}
-            />
-            <div
-              className={
-                dotLanded
-                  ? `${styles.cardMat} ${styles.cardMatVisible}`
-                  : styles.cardMat
-              }
-            >
+            <div className={styles.cardMat}>
               <Image
                 src="/avatar2.png"
                 alt="Onagaumah Emmanuel"
                 width={448}
                 height={594}
-                className={
-                  imageVisible
-                    ? `${styles.cardImage} ${styles.cardImageVisible}`
-                    : styles.cardImage
-                }
+                className={styles.cardImage}
               />
             </div>
-          </div>
+          </motion.div>
 
           <div className={styles.secondCol}>
             <div
