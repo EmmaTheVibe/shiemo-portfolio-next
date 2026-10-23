@@ -94,7 +94,9 @@
 .media {
   position: relative;
   margin-top: 16px;
-  height: 220px;
+  /* A fixed shape rather than a fixed height: at 220px tall, narrow cards
+     (phones, tablets, the 3-column grid) cropped the media's sides. */
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-2);
