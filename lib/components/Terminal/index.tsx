@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTypewriter } from "./useTypewriter";
 import { useCommandHistory } from "./useCommandHistory";
@@ -17,14 +16,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const QUICK_COMMANDS = ["about", "skills", "projects", "contact"];
 
 export function Terminal() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const displayedHint = useTypewriter(sectionRef, HINT_TEXT);
   const { input, setInput, history, terminalRef, handleKeydown, runCommand } =
     useCommandHistory();
   const { ref: terminalColRef, visible: terminalColVisible } = useInViewFade<HTMLDivElement>();
+  // Watch the terminal itself, not the whole section: stacked on mobile the
+  // section is several screens tall, so 35% of it is never on screen at once.
+  const displayedHint = useTypewriter(terminalColRef, HINT_TEXT);
 
   return (
-    <section id="terminal" ref={sectionRef} className={styles.terminalSection}>
+    <section id="terminal" className={styles.terminalSection}>
       <div className={styles.terminalInner}>
         <HangingTag label="Let's build" />
         <h2 className={styles.sectionTitle}>

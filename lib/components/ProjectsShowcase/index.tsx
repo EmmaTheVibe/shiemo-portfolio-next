@@ -170,7 +170,13 @@ export function ProjectsShowcase() {
                       >
                         {SHOWCASE.map((p) => (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img key={p.id} src={p.image} alt={p.title} className={styles.shot} />
+                          <img
+                            key={p.id}
+                            src={p.gif ?? p.image}
+                            alt={p.title}
+                            loading="lazy"
+                            className={styles.shot}
+                          />
                         ))}
                       </motion.div>
                     </motion.div>

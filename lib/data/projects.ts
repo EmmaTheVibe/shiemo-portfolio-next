@@ -29,17 +29,17 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 1,
-    title: "Coinview",
+    id: 10,
+    title: "Swoop",
     description:
-      "Real-time crypto dashboard with live price charts, market data, and a streaming activity feed.",
+      "Scroll-driven landing page for a camera drone store, where scrolling flies you through five drone videos.",
     longDescription:
-      "Crypto dashboard built with Vue 3 and TypeScript, using the CoinGecko API to surface real-time market data, live price charts, and streaming activity updates.",
-    tech: ["Vue 3", "TypeScript", "CoinGecko API"],
-    live: "https://coinview-rose.vercel.app/",
-    github: "https://github.com/EmmaTheVibe/coinview",
-    image: "/coinview.avif",
-    gif: "/coinview.gif",
+      "Landing page for Swoop, a fictional camera drone store, built with Next.js. Five drone videos are extracted into AVIF frame sequences and scrubbed frame by frame on a canvas as you scroll, joined by whip-blur transitions. A custom loader streams every frame in the background but only decodes the ones near the scroll position, keeping memory capped and playback smooth on phones.",
+    tech: ["Next.js", "TypeScript", "Canvas API"],
+    live: "https://flyswoop.vercel.app/",
+    github: "https://github.com/EmmaTheVibe/swoopflight",
+    image: "/swoop.avif",
+    gif: "/swoop.gif",
     featured: true,
   },
   {
@@ -54,6 +54,20 @@ export const projects: Project[] = [
     github: "https://github.com/EmmaTheVibe/yap",
     image: "/yapp.avif",
     gif: "/yapp.gif",
+    featured: true,
+  },
+  {
+    id: 1,
+    title: "Coinview",
+    description:
+      "Real-time crypto dashboard with live price charts, market data, and a streaming activity feed.",
+    longDescription:
+      "Crypto dashboard built with Vue 3 and TypeScript, using the CoinGecko API to surface real-time market data, live price charts, and streaming activity updates.",
+    tech: ["Vue 3", "TypeScript", "CoinGecko API"],
+    live: "https://coinview-rose.vercel.app/",
+    github: "https://github.com/EmmaTheVibe/coinview",
+    image: "/coinview.avif",
+    gif: "/coinview.gif",
     featured: true,
   },
   {

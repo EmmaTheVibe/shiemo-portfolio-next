@@ -353,8 +353,9 @@
   flex: 1;
   width: 100%;
   min-height: 0;
-  object-fit: cover;
-  object-position: top;
+  /* The GIFs are ~1.8:1 and the screen ~1.72:1; a ~4.5% squeeze is invisible
+     here, whereas cover cropped UI off their sides. */
+  object-fit: fill;
 }
 
 .notch {
