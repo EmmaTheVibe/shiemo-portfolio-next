@@ -37,7 +37,7 @@ export const projects: Project[] = [
       "Landing page for Swoop, a fictional camera drone store, built with Next.js. Five drone videos are extracted into AVIF frame sequences and scrubbed frame by frame on a canvas as you scroll, joined by whip-blur transitions. A custom loader streams every frame in the background but only decodes the ones near the scroll position, keeping memory capped and playback smooth on phones.",
     tech: ["Next.js", "TypeScript", "Canvas API"],
     live: "https://flyswoop.vercel.app/",
-    github: "https://github.com/EmmaTheVibe/swoopflight",
+    github: "https://github.com/EmmaTheVibe/flyswoop",
     image: "/swoop.avif",
     gif: "/swoop.gif",
     featured: true,
