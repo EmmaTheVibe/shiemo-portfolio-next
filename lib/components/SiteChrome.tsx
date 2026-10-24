@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { LayoutGroup } from "framer-motion";
-import { Intro } from "@/lib/components/Intro";
+// Swap back to `import { Intro } from "@/lib/components/Intro"` (and <Intro>
+// below) to restore the fixed-position intro.
+import { IntroInPage } from "@/lib/components/IntroInPage";
 import { Navbar, type NavState } from "@/lib/components/Navbar";
 import { useSetIntroComplete } from "@/lib/context/IntroCompleteContext";
 
@@ -13,7 +15,7 @@ export function SiteChrome() {
 
   return (
     <LayoutGroup>
-      <Intro
+      <IntroInPage
         onSkip={() => {
           setNavState("expanded");
           setAutoExpand(true);
