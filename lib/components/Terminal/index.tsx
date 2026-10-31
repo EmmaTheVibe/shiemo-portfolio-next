@@ -19,8 +19,6 @@ export function Terminal() {
   const { input, setInput, history, terminalRef, handleKeydown, runCommand } =
     useCommandHistory();
   const { ref: terminalColRef, visible: terminalColVisible } = useInViewFade<HTMLDivElement>();
-  // Watch the terminal itself, not the whole section: stacked on mobile the
-  // section is several screens tall, so 35% of it is never on screen at once.
   const displayedHint = useTypewriter(terminalColRef, HINT_TEXT);
 
   return (

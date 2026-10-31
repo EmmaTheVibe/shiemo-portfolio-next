@@ -8,7 +8,7 @@ type Item = {
 type Res = { jobs: Item[] };
 
 const QUERIES = ["frontend", "react", "vue", "svelte", "next.js", "typescript"];
-const PAGES = 3; // 20 per page, newest first
+const PAGES = 3;
 
 export const himalayas: Source = {
   name: "himalayas",

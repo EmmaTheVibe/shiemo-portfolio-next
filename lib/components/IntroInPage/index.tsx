@@ -5,18 +5,6 @@ import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 import styles from "./IntroInPage.module.css";
 
-/**
- * Same intro as `@/lib/components/Intro`, but laid out on the page instead of
- * fixed to the viewport.
- *
- * X's in-app browser (links opened from a tweet) runs the page under its
- * header and tweet card but clips fixed elements to the space between them,
- * so the fixed intro left the page showing above and below it. Here the
- * overlay sits at the top of the document, so its panels run under the
- * tweet card like the rest of the page, and the page background turns white
- * while the intro runs to cover the strip above the document.
- */
-
 const PANEL_COUNT = 6;
 const LETTER_STAGGER = 0.06;
 const LETTER_DURATION = 0.6;
@@ -43,9 +31,6 @@ type Props = {
   onComplete?: () => void;
 };
 
-// How far the panels slide to clear the screen. On touch devices in-app
-// browsers can draw the page below the viewport (under their own bars), so
-// travel the full screen height there; elsewhere the viewport is the screen.
 function peelTravel() {
   const coarse = window.matchMedia("(pointer: coarse)").matches;
   return coarse ? Math.max(window.innerHeight, window.screen.height) : window.innerHeight;
@@ -72,8 +57,6 @@ export function IntroInPage({ onLaunch, onSkip, onComplete }: Props) {
       return;
     }
 
-    // The overlay lives at the top of the document, so start there and keep
-    // the browser from restoring a scroll position underneath it.
     const prevRestoration = history.scrollRestoration;
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
@@ -110,7 +93,6 @@ export function IntroInPage({ onLaunch, onSkip, onComplete }: Props) {
   }, []);
 
   useEffect(() => {
-    // Hand the strip above the document back to the page as the peel reveals it.
     if (skip || phase === "peel" || phase === "done") {
       document.documentElement.style.backgroundColor = "";
     }

@@ -15,7 +15,6 @@ import { DAILY_SEND_CAP, sentToday } from "@/lib/monitor/send";
 import { hasSession } from "@/lib/monitor/session";
 import type { View } from "@/lib/monitor/types";
 
-// The "Run discovery now" server action runs under this page's limit.
 export const maxDuration = 60;
 
 export default async function MonitorPage({ searchParams }: { searchParams: Promise<{ view?: string; page?: string }> }) {

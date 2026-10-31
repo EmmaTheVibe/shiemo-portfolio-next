@@ -1,6 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-// No generated schema types yet, so tables are loosely typed.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let client: SupabaseClient<any, "public", any> | undefined;
 

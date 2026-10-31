@@ -1,6 +1,5 @@
 import styles from "./Monitor.module.css";
 
-// Badge color classes are looked up by name (status_new, source_hn, ...).
 export const statusClass = (status: string) => styles[`status_${status}`] ?? "";
 export const sourceClass = (source: string) => styles[`source_${source}`] ?? "";
 export const scoreClass = (score: number) =>

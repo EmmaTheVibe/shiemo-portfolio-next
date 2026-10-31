@@ -17,7 +17,7 @@ export const terminalCommands: Record<string, () => string[]> = {
     "- whoami: Who are you talking to?",
   ],
   about: () => [
-    "- Onagaumah Emmanuel",
+    "- Emmanuel Onagaumah",
     "- Software Developer",
     "- Experience: SaaS, fintech, and edutech",
     "- Focus: Clean code, seamless UX, and real-world impact",

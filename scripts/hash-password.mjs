@@ -1,4 +1,3 @@
-// Usage: MONITOR_PW='your password' node scripts/hash-password.mjs
 import { randomBytes, scryptSync } from "node:crypto";
 
 const pw = process.env.MONITOR_PW;

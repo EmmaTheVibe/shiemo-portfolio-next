@@ -5,8 +5,6 @@ type Item = {
   children?: { id: number; text?: string | null; created_at: string; author?: string }[];
 };
 
-// Top-level comments of the latest "Ask HN: Who is hiring?" thread.
-// Comments are free text, so the first line is used as the title.
 export const hn: Source = {
   name: "hn",
   async fetch() {
@@ -22,7 +20,6 @@ export const hn: Source = {
       if (!c.text) continue;
       const text = stripHtml(c.text);
       const headline = stripHtml(c.text.split("<p>")[0]);
-      // Posts start "Company | Role | Location | ...": keep the first three parts.
       const head = headline.split("|").map((p) => p.trim());
       const first = head.slice(0, 3).join(" | ").slice(0, 160);
       out.push({

@@ -48,7 +48,6 @@ export async function runDiscovery() {
     candidates.push(...jobs.filter(isCandidate));
   });
 
-  // Attach the contact email found in the listing text; optionally drop jobs without one.
   const withEmail = candidates
     .map((j) => ({ ...j, contact_email: extractEmail(j.description) }))
     .filter((j) => !REQUIRE_CONTACT_EMAIL || j.contact_email);

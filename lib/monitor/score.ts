@@ -2,14 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { db } from "./db";
 import { PROFILE, REQUIRE_CONTACT_EMAIL } from "./profile";
 
-// Cheapest current model; plenty for scoring a listing against a profile.
-// Swap for a bigger model here if scores look off.
 const MODEL = "claude-haiku-4-5";
-// Hard ceiling on Claude calls per UTC day, enforced from the database so it
-// holds across cron runs and manual clicks alike. null = no daily cap.
 export const DAILY_SCORE_CAP: number | null = 20;
 
-// Per-run limit so a run finishes inside the serverless time limit. Not a daily cap.
 const PER_RUN_LIMIT = 60;
 const CONCURRENCY = 4;
 const DESCRIPTION_LIMIT = 6000;
@@ -97,10 +92,6 @@ export async function scoredToday() {
   return count ?? 0;
 }
 
-// Scores jobs that are not applied to and still unscored, never more than DAILY_SCORE_CAP
-// per UTC day. Rows are claimed (scored_at set) before the API call, so a
-// concurrent run sees them as spent. Returns without throwing so discovery can
-// still record its run.
 export async function scorePending() {
   const errors: { source: string; message: string }[] = [];
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -122,7 +113,6 @@ export async function scorePending() {
     .eq("status", "new")
     .is("score", null)
     .is("scored_at", null);
-  // Never spend a call on a job we couldn't email.
   if (REQUIRE_CONTACT_EMAIL) query = query.not("contact_email", "is", null);
   const { data, error } = await query.order("discovered_at", { ascending: false }).limit(remaining);
   if (error) return { scored: 0, errors: [{ source: "scoring", message: error.message }] };
@@ -130,7 +120,6 @@ export async function scorePending() {
   const jobs = (data ?? []) as Job[];
   if (!jobs.length) return { scored: 0, errors };
 
-  // Claim before calling the API.
   const claimedAt = new Date().toISOString();
   const { error: claimErr } = await supabase
     .from("jobs")
@@ -159,8 +148,6 @@ export async function scorePending() {
         scored++;
       } catch (e) {
         const message = e instanceof Error ? e.message : String(e);
-        // If the API never returned a response (auth, network, credit errors),
-        // nothing was spent: release the claim so it doesn't eat the daily cap.
         if (!called) await supabase.from("jobs").update({ scored_at: null }).eq("id", job.id);
         if (errors.length < 3) errors.push({ source: "scoring", message: `${job.title}: ${message}` });
       }

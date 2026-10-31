@@ -1,4 +1,3 @@
-// Ground truth for drafts. The model may only claim things listed here.
 export const RESUME_FACTS = `Onagaumah Emmanuel, React.js and Next.js developer in Nigeria with experience across SaaS (B2B and B2C), fintech and edutech.
 - Fullstack Developer at WAEC (Sept 2023 to present): built and maintained internal enterprise web apps with Next.js, React, TypeScript and Tailwind CSS for examination operations across multiple Nigerian states.
   - Zone Center Management System: streamlined examination coordination, cutting manual administrative processing time by about 40%.
@@ -18,11 +17,8 @@ export const LINKS = {
 
 export const SIGNOFF = "Emmanuel Onagaumah";
 
-// Fixed sentence appended after the tailored part. Edit to taste.
 export const AVAILABILITY = "I can work in any timezone.";
 
-// The email is assembled around a two-part model output (role + fit) so the
-// model can never alter the links, sign-off, or invent claims outside "fit".
 export function assembleEmail(role: string, company: string | null, fit: string) {
   const at = company ? ` at ${company}` : "";
   const links = Object.entries(LINKS).map(([k, v]) => `${k} - ${v}`).join("\n");

@@ -71,7 +71,7 @@ export function HeroAbout() {
               />
               <Image
                 src="/avatar.png"
-                alt="Onagaumah Emmanuel"
+                alt="Emmanuel Onagaumah"
                 width={630}
                 height={848}
                 className={styles.avatar}
@@ -99,8 +99,6 @@ export function HeroAbout() {
             <motion.span
               className={styles.cardBacking}
               variants={{
-                // Reset instantly on exit so a quick scroll back replays the
-                // full slide instead of resuming from wherever it got to.
                 hidden: { x: "-100%", transition: { duration: 0 } },
                 shown: {
                   x: 0,
@@ -111,7 +109,7 @@ export function HeroAbout() {
             <div className={styles.cardMat}>
               <Image
                 src="/avatar2.png"
-                alt="Onagaumah Emmanuel"
+                alt="Emmanuel Onagaumah"
                 width={448}
                 height={594}
                 className={styles.cardImage}

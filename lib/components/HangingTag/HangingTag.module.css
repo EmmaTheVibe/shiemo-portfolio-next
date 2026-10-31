@@ -1,17 +1,11 @@
-/* Pin-to-tag distance. Matches the homepage stacking sections' top padding
-   (50px, 100px from 1281px) minus the pin's 14px inset from the sheet edge.
-   The projects and contact pages pad 140px, so there the pin just sits a
-   little lower, still clear of the fixed navbar. */
 .hangWrap {
   --string: 36px;
   --eyelet-ring: var(--card-orange);
   position: relative;
   display: inline-block;
-  /* Never stretch (e.g. in a flex column): the pin centres on this box. */
   width: fit-content;
 }
 
-/* Orange sections: dark pin, white eyelet ring. */
 .dark {
   --eyelet-ring: #ffffff;
 }
@@ -33,13 +27,10 @@
   background: radial-gradient(circle at 35% 35%, #6b6b74, #07080f 60%);
 }
 
-/* Shadow sits on a non-rotating layer so the light stays fixed while the tag
-   swings. The pin is outside it: pressed into the sheet, it only gets a small one. */
 .cast {
   filter: drop-shadow(5px 9px 6px rgba(7, 8, 15, 0.28));
 }
 
-/* Pivots around the pin. */
 .hanger {
   position: relative;
   transform-origin: 50% calc(-1 * var(--string));
@@ -55,9 +46,6 @@
   background: #07080f;
 }
 
-/* Hangs level instead of the usual tilt; extra top padding makes room for the hole.
-   Grabbable: no page scroll when dragged by touch, and (prefixed for iOS
-   Safari) no text selection, long-press callout or tap flash. */
 .hanger .label {
   position: relative;
   padding-top: 18px;

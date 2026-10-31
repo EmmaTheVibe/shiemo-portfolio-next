@@ -13,10 +13,6 @@ const BOUNCE_DURATION_MS = 450;
 const LAUNCH_DURATION_MS = 550;
 const PANEL_STAGGER = 0.08;
 const PANEL_DURATION = 0.6;
-// Some in-app browsers (X's tweet browser) run the page under their own
-// header and footer while sizing fixed elements to the space between, so the
-// panels overhang the viewport to cover those strips. Kept small on top: the
-// panels' top edges have to travel this far before the peel reveals anything.
 const PANEL_OVERHANG_TOP = 80;
 
 const NAV_TARGET_Y = 46;
@@ -104,8 +100,6 @@ export function Intro({ onLaunch, onSkip, onComplete }: Props) {
   const launched = phase === "launch" || phase === "peel";
   const bouncing = phase === "bounce";
   const peeling = phase === "peel";
-  // Just far enough for the panels' top edges to clear the viewport, so the
-  // bottom overhang doesn't make the peel faster.
   const peelDistance = peeling ? window.innerHeight + PANEL_OVERHANG_TOP : 0;
 
   return (

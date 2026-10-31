@@ -26,7 +26,6 @@ export const weworkremotely: Source = {
         const url = tag(item, "link");
         const raw = tag(item, "title");
         if (!url || !raw) continue;
-        // Titles look like "Company: Job title"
         const i = raw.indexOf(":");
         const company = i > 0 ? raw.slice(0, i).trim() : undefined;
         const title = i > 0 ? raw.slice(i + 1).trim() : raw;

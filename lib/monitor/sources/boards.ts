@@ -15,7 +15,6 @@ async function greenhouse(slug: string): Promise<RawJob[]> {
       company: j.company_name ?? slug,
       location: j.location?.name,
       remote: isRemote(j.location?.name),
-      // content is HTML-escaped HTML
       description: stripHtml(stripHtml(j.content ?? "").replace(/&lt;/g, "<")),
       posted_at: j.first_published ?? j.updated_at,
     }));

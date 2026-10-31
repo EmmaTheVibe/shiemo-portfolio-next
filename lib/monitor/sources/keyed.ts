@@ -1,9 +1,5 @@
 import { getJson, stripHtml, type RawJob, type Source } from "./types";
 
-// Sources that need a free signup. Each returns [] quietly when its key isn't set.
-// Written from the providers' documented response shapes; not yet exercised
-// against a live key, so a failure will surface in the run errors.
-
 type AdzunaRes = { results?: { id: string; title: string; company?: { display_name?: string }; location?: { display_name?: string }; description?: string; redirect_url: string; created?: string }[] };
 
 export const adzuna: Source = {

@@ -5,7 +5,6 @@ type Item = {
   location?: string; tags?: string[]; description?: string; date?: string;
 };
 
-// RemoteOK's terms require linking back to the job URL, which we store as-is.
 export const remoteok: Source = {
   name: "remoteok",
   async fetch() {

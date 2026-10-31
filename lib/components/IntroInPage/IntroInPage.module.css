@@ -1,5 +1,3 @@
-/* Positioned on the document (body is the containing block), not the
-   viewport: see the note at the top of index.tsx. */
 .overlay {
   position: absolute;
   top: 0;
@@ -13,8 +11,6 @@
   justify-content: center;
 }
 
-/* Runs past the bottom of the viewport to fill the area in-app browsers draw
-   under their own bars. Always off screen otherwise, so it's generous. */
 .panels {
   position: absolute;
   top: 0;

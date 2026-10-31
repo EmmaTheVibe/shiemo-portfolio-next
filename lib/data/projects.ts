@@ -11,8 +11,6 @@ export type Project = {
   featured: boolean;
 };
 
-// Order matters: the first three are the homepage's featured projects.
-// Ids are stable lookups (e.g. the ao2 card), so they don't follow the order.
 export const projects: Project[] = [
   {
     id: 5,

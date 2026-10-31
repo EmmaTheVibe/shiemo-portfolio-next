@@ -40,5 +40,4 @@ export type SentEmail = { id: string; to_email: string; subject: string; sent_at
 
 export type View = "matched" | "skipped" | "applied" | "all";
 
-// Job counts: matched / skipped come from the score, applied from the status.
 export type JobCounts = { matched: number; skipped: number; unscored: number; applied: number; total: number };

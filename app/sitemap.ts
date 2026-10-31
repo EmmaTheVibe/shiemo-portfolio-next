@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://shiemo.dev";
+const BASE_URL = "https://www.shiemo.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

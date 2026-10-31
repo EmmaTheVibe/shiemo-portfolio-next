@@ -4,8 +4,6 @@ import { useOptimistic, useTransition } from "react";
 import { setApplied } from "@/app/monitor/actions";
 import styles from "./Monitor.module.css";
 
-// A checkbox that flips instantly, saves in the background, and is disabled
-// (with a not-allowed cursor) until the save finishes.
 export function AppliedToggle({ id, applied, title }: { id: string; applied: boolean; title: string }) {
   const [pending, startTransition] = useTransition();
   const [optimistic, setOptimistic] = useOptimistic(applied);

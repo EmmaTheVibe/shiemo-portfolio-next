@@ -7,8 +7,6 @@ type Item = {
 
 const TAGS = ["react", "vue", "svelte", "nextjs", "frontend", "typescript"];
 
-// Jobicy's terms: credit Jobicy and link to the original posting. The source
-// column shows "jobicy" and every row links to the original job URL.
 export const jobicy: Source = {
   name: "jobicy",
   async fetch() {

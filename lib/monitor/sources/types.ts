@@ -14,8 +14,6 @@ export type RawJob = {
 export type SourceResult = RawJob[] | { jobs: RawJob[]; warnings: string[] };
 export type Source = { name: string; fetch: () => Promise<SourceResult> };
 
-// One retry on network errors and 5xx/429, with the underlying cause in the message
-// ("fetch failed" alone says nothing).
 export async function getJson<T>(url: string, timeoutMs = 30_000): Promise<T> {
   let lastError = "";
   for (let attempt = 0; attempt < 2; attempt++) {

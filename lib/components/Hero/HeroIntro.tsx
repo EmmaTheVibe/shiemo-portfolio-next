@@ -51,7 +51,7 @@ export function HeroIntro({ visible = false }: Props) {
             className={styles.line}
             {...riseProps(visible, 0, 0.7, true)}
           >
-            Onagaumah
+            Emmanuel
           </motion.span>
         </span>
         <span className={styles.lineMask}>
@@ -59,7 +59,7 @@ export function HeroIntro({ visible = false }: Props) {
             className={styles.line}
             {...riseProps(visible, 1, 0.7, true)}
           >
-            Emmanuel<span className="accent-dot">.</span>
+            Onagaumah<span className="accent-dot">.</span>
           </motion.span>
         </span>
       </h1>

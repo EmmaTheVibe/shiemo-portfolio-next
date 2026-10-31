@@ -7,7 +7,6 @@ export const PAGE_SIZE = 25;
 export type JobsData = {
   error: string | null;
   jobs: Job[];
-  // Rows matching the current tab (drives the page count).
   filteredTotal: number;
   lastRun: Run | null;
   counts: JobCounts;
@@ -42,7 +41,6 @@ export async function loadJobs(view: View, page = 1): Promise<JobsData> {
       supabase.from("jobs").select("status,score"),
     ]);
 
-    // A stale ?page=N past the end falls back to the last page.
     let jobs = firstPage;
     const filteredTotal = jobs.count ?? 0;
     const lastPage = Math.max(1, Math.ceil(filteredTotal / PAGE_SIZE));

@@ -11,7 +11,6 @@ import { revalidatePath } from "next/cache";
 
 const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 15 * 60 * 1000;
-// Best-effort per-instance throttle; scrypt cost + the delay below do the rest.
 const attempts = new Map<string, { count: number; resetAt: number }>();
 
 export type LoginState = { error: string };
@@ -52,7 +51,6 @@ export async function discoverNow() {
   revalidatePath("/monitor");
 }
 
-// One form per draft; the submit button's value says what to do.
 export async function draftAction(formData: FormData) {
   if (!(await hasSession())) redirect("/monitor/login");
   if (!MAIL_ENABLED) return;
@@ -101,7 +99,6 @@ export async function draftAction(formData: FormData) {
   revalidatePath("/monitor");
 }
 
-// Ticking "applied" on a row. Unticking moves it back to not applied.
 export async function setApplied(id: string, applied: boolean) {
   if (!(await hasSession())) redirect("/monitor/login");
   if (!id) return;

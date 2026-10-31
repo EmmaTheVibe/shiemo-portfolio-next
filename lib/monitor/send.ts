@@ -20,7 +20,6 @@ export async function sentToday() {
   return count ?? 0;
 }
 
-// Local file first (dev), then a private Supabase Storage bucket (deployed).
 async function getResume(): Promise<Buffer> {
   try {
     return await readFile(path.join(process.cwd(), "monitor-assets", "resume.pdf"));
@@ -65,7 +64,6 @@ async function setNote(id: string, note: string | null) {
   await db().from("applications").update({ note }).eq("id", id);
 }
 
-// Sends the draft to your own Reply-To inbox so you can check it (and the attachment).
 export async function sendTest(id: string, subject: string, body: string) {
   const to = process.env.REPLY_TO_EMAIL;
   try {
@@ -77,9 +75,6 @@ export async function sendTest(id: string, subject: string, body: string) {
   }
 }
 
-// Sends an approved application to the employer. Refuses (with a note) when a
-// safety rail trips. The status flip happens first, atomically, so a double
-// click can never send twice; it is reverted to "failed" if sending fails.
 export async function sendApplication(id: string) {
   const supabase = db();
   const { data: app } = await supabase
@@ -132,7 +127,6 @@ export async function sendApplication(id: string) {
   }
 }
 
-// For listings with no email: you applied yourself through the link.
 export async function markApplied(id: string) {
   const supabase = db();
   const { data: app } = await supabase.from("applications").select("job_id,status").eq("id", id).single();

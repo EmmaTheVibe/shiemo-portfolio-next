@@ -5,7 +5,6 @@ import { StackButton } from "./StackButton";
 import { scoreClass, statusClass } from "./classes";
 import styles from "./Monitor.module.css";
 
-// A failed send shows as a red "rejected"-colored badge.
 const BADGE_STATUS = { draft: "drafted", approved: "approved", failed: "rejected" } as const;
 
 export function DraftItem({ draft: d }: { draft: Draft }) {

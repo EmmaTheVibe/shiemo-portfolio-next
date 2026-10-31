@@ -7,8 +7,6 @@
   justify-content: center;
 }
 
-/* Overhangs the viewport (top is set inline from PANEL_OVERHANG_TOP); see the
-   note on that constant. The bottom overhang is always off screen, so it's generous. */
 .panels {
   position: absolute;
   right: 0;

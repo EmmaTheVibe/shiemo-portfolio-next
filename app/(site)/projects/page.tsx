@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Projects } from "@/lib/components/Projects";
 
 export const metadata: Metadata = {
-  title: "Projects - Onagaumah Emmanuel",
+  title: "Projects",
   description:
     "A full collection of my projects, including SaaS, fintech, edutech, and frontend engineering work.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {

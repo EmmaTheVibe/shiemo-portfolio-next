@@ -42,7 +42,6 @@
   margin-bottom: 8px;
 }
 
-/* Header buttons reuse the Contact form's stacked button; this makes one white. */
 button.btnLight {
   background: #ffffff;
   color: #07080f;
@@ -55,8 +54,6 @@ button.btnLight {
   margin-bottom: 40px;
 }
 
-/* Dashed white card in front of an orange offset backing, like the Contact card.
-   Both are pseudo-elements so the white layer reliably paints above the orange. */
 .panel {
   position: relative;
   z-index: 0;
@@ -159,7 +156,6 @@ button.btnLight {
   font-size: 0.85rem;
 }
 
-/* Jobs table */
 .tablePanel {
   margin-top: 8px;
   padding: 24px 0 8px;
@@ -244,7 +240,6 @@ button.btnLight {
   white-space: nowrap;
 }
 
-/* Badges: dashed dark border like the site's success badge, colored by status. */
 .badge {
   display: inline-block;
   max-width: 200px;
@@ -443,7 +438,6 @@ button.btnLight {
   gap: 8px;
 }
 
-/* Loading states */
 .stackBusy {
   cursor: not-allowed;
 }
@@ -453,7 +447,6 @@ button.btnLight {
   opacity: 0.65;
 }
 
-/* Keep the black hover backing from firing on a disabled button. */
 .stackBusy.stackBusy:hover > span {
   background: rgba(7, 8, 15, 0.08);
 }
@@ -487,17 +480,14 @@ button.btnLight {
   cursor: not-allowed;
 }
 
-/* The draft form's own gap moved into .fields, so keep a single column here. */
 .draft {
   gap: 0;
 }
 
-/* One card left (jobs only): let the stage counts spread out. */
 .stages {
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
 }
 
-/* Applied checkbox: site-style dashed box, orange when ticked. */
 .appliedBox {
   appearance: none;
   width: 22px;

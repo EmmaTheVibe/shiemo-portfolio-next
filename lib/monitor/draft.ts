@@ -1,7 +1,6 @@
 import { db } from "./db";
 import { RESUME_FACTS, assembleEmail } from "./resume";
 
-// Free-tier friendly and cheap. Falls back to the larger model on errors.
 const MODELS = ["gemini-3.5-flash-lite", "gemini-3.5-flash"];
 export const DAILY_DRAFT_CAP = 10;
 const DESCRIPTION_LIMIT = 6000;
@@ -92,7 +91,6 @@ export async function draftedToday() {
   return count ?? 0;
 }
 
-// Drafts emails for matched jobs that have none yet, up to DAILY_DRAFT_CAP per UTC day.
 export async function draftPending() {
   const errors: { source: string; message: string }[] = [];
   if (!process.env.GEMINI_API_KEY) {

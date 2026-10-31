@@ -16,6 +16,11 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.shiemo.dev"),
+  title: {
+    default: "Emmanuel Onagaumah — Software Developer",
+    template: "%s | Emmanuel Onagaumah",
+  },
   openGraph: {
     images: ["https://shiemo.dev/socials.png"],
     type: "website",
