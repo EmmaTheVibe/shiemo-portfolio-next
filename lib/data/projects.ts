@@ -20,7 +20,7 @@ export const projects: Project[] = [
     longDescription:
       "Portfolio site for Lagos-based photographer Moses Momodu, built with Next.js 16 and GSAP. Each category opens into a gallery with a scroll intro and Flip transitions into a full-screen viewer, and a full-screen menu swings in cover prints on a string as you hover each gallery. A custom cursor frames links and photos in viewfinder brackets. Photos run through a script that converts them to WebP with blur placeholders, and the contact form sends enquiries through EmailJS from a server action with validation on both ends.",
     tech: ["Next.js", "TypeScript", "GSAP"],
-    live: "https://themodumaliq.vercel.app/",
+    live: "https://themodumaliq.com/",
     github: null,
     image: "/themodumaliq.avif",
     gif: "/themodumaliq.gif",
