@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Emmanuel Onagaumah",
   },
   openGraph: {
+    siteName: "Emmanuel Onagaumah",
     images: ["https://shiemo.dev/socials.png"],
     type: "website",
   },

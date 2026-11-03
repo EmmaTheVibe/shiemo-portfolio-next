@@ -4,7 +4,26 @@
   z-index: 1;
   flex-shrink: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerNav {
+  display: flex;
+  gap: 20px;
+}
+
+.footerLink {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: var(--text);
 }
 
 .footerCopy {
