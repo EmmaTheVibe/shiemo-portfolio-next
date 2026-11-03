@@ -114,7 +114,7 @@ export function ProjectsShowcase() {
         <div className={styles.head}>
           <HangingTag label="Featured Projects" pin="dark" />
           <h2 className={styles.title}>
-            Things I&apos;ve built<span className="accent-dot">.</span>
+            Some things I&apos;ve built<span className="accent-dot">.</span>
           </h2>
         </div>
 
@@ -241,6 +241,19 @@ export function ProjectsShowcase() {
                 <span className={styles.seeAllBacking} />
                 <Link href="/projects" className={styles.seeAll}>
                   See all projects
+                  <svg
+                    className={styles.seeAllArrow}
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    aria-hidden="true"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
                 </Link>
               </span>
             </div>

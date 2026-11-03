@@ -13,7 +13,50 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 5,
+    id: 1,
+    title: "themodumaliq",
+    description:
+      "Photography portfolio for Moses Momodu, with scroll-driven galleries, a hanging-print menu and a custom viewfinder cursor.",
+    longDescription:
+      "Portfolio site for Lagos-based photographer Moses Momodu, built with Next.js 16 and GSAP. Each category opens into a gallery with a scroll intro and Flip transitions into a full-screen viewer, and a full-screen menu swings in cover prints on a string as you hover each gallery. A custom cursor frames links and photos in viewfinder brackets. Photos run through a script that converts them to WebP with blur placeholders, and the contact form sends enquiries through EmailJS from a server action with validation on both ends.",
+    tech: ["Next.js", "TypeScript", "GSAP"],
+    live: "https://themodumaliq.vercel.app/",
+    github: null,
+    image: "/themodumaliq.avif",
+    gif: "/themodumaliq.gif",
+    featured: true,
+  },
+
+  {
+    id: 2,
+    title: "Rick's Closet",
+    description:
+      "Interactive 3D clothing store where you walk into a wardrobe and browse clothes, shoes and watches in their own rooms.",
+    longDescription:
+      "3D shopping experience built with Next.js and React Three Fiber. The home page is a wardrobe whose doors open as the camera walks in, leading to three rooms: a clothes rail you drag to slide garments along, a shoe wall, and a watch box on a sideboard, with a shopping bag that carries across all of them. Tuned for everyday phones by preloading every asset up front, serving a lighter version on low-memory devices and splitting each room into its own route, bringing first loads down to about 5 seconds on average.",
+    tech: ["Next.js", "TypeScript", "Three.js"],
+    live: "https://ricks-closet.vercel.app/",
+    github: null,
+    image: "/ricks-closet.avif",
+    gif: "/ricks-closet.gif",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Swoop",
+    description:
+      "Scroll-driven landing page for a camera drone store, where scrolling flies you through five drone videos.",
+    longDescription:
+      "Landing page for Swoop, a fictional camera drone store, built with Next.js. Five drone videos are extracted into AVIF frame sequences and scrubbed frame by frame on a canvas as you scroll, joined by whip-blur transitions. A custom loader streams every frame in the background but only decodes the ones near the scroll position, keeping memory capped and playback smooth on phones.",
+    tech: ["Next.js", "TypeScript", "Canvas API"],
+    live: "https://flyswoop.vercel.app/",
+    github: null,
+    image: "/swoop.avif",
+    gif: "/swoop.gif",
+    featured: true,
+  },
+  {
+    id: 4,
     title: "W.A.V.E.S",
     description:
       "WAEC Attendance Verification System: nationwide digital attendance verification for CBWASSCE examinations.",
@@ -26,22 +69,9 @@ export const projects: Project[] = [
     gif: "/waec.gif",
     featured: true,
   },
+
   {
-    id: 10,
-    title: "Swoop",
-    description:
-      "Scroll-driven landing page for a camera drone store, where scrolling flies you through five drone videos.",
-    longDescription:
-      "Landing page for Swoop, a fictional camera drone store, built with Next.js. Five drone videos are extracted into AVIF frame sequences and scrubbed frame by frame on a canvas as you scroll, joined by whip-blur transitions. A custom loader streams every frame in the background but only decodes the ones near the scroll position, keeping memory capped and playback smooth on phones.",
-    tech: ["Next.js", "TypeScript", "Canvas API"],
-    live: "https://flyswoop.vercel.app/",
-    github: "https://github.com/EmmaTheVibe/flyswoop",
-    image: "/swoop.avif",
-    gif: "/swoop.gif",
-    featured: true,
-  },
-  {
-    id: 2,
+    id: 5,
     title: "Yapp",
     description:
       "End-to-end encrypted real-time chat app with RSA-OAEP + AES-GCM hybrid encryption and WebSocket messaging.",
@@ -55,7 +85,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 1,
+    id: 6,
     title: "Coinview",
     description:
       "Real-time crypto dashboard with live price charts, market data, and a streaming activity feed.",
@@ -69,7 +99,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 3,
+    id: 7,
     title: "Jadoo",
     description:
       "Modern landing page for a travel agency featuring animated card stacks and carousels.",
@@ -83,7 +113,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 4,
+    id: 8,
     title: "Weather Now",
     description:
       "Weather application with auto geolocation, city search, 7-day forecasts and hourly breakdowns.",
@@ -97,7 +127,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 6,
+    id: 9,
     title: "Parkway Wallet Site",
     description:
       "Landing page for Parkway Wallet, a fintech app available on iOS and Android, built during an internship at Parkway Projects Ltd.",
@@ -110,7 +140,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 7,
+    id: 10,
     title: "ao2 Designs",
     description:
       "Portfolio website for ao2 Designs, featuring smooth animations and transitions.",
@@ -124,7 +154,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 8,
+    id: 11,
     title: "Habit Tracker",
     description:
       "PWA for tracking daily habits with streak tracking, offline support, and no backend required.",
@@ -138,7 +168,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 9,
+    id: 12,
     title: "IP Address Tracker",
     description:
       "IP lookup and interactive map visualization using the ipify API and Leaflet.js.",

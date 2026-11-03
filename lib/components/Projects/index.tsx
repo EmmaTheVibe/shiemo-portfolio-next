@@ -32,7 +32,9 @@ export function Projects({
   return (
     <section
       id="projects"
-      className={featured ? `${styles.projects} ${styles.featured}` : styles.projects}
+      className={
+        featured ? `${styles.projects} ${styles.featured}` : styles.projects
+      }
     >
       <div className={styles.projectsInner}>
         <div className={styles.sectionHeader}>
@@ -45,7 +47,11 @@ export function Projects({
         </div>
 
         <div
-          className={featured ? `${styles.projectsGrid} ${styles.scrollRow}` : styles.projectsGrid}
+          className={
+            featured
+              ? `${styles.projectsGrid} ${styles.scrollRow}`
+              : styles.projectsGrid
+          }
         >
           {visibleProjects.map((project, i) => {
             const col = i % COLUMNS;
