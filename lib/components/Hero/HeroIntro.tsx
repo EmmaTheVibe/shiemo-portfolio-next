@@ -45,7 +45,7 @@ export function HeroIntro({ visible = false }: Props) {
       </div>
 
       <h1 className={styles.heroName}>
-        <span className={styles.greeting}>Hello, I&apos;m</span>
+        <span className={styles.greeting}>Hello, I&apos;m</span>{" "}
         <span className={styles.lineMask}>
           <motion.span
             className={styles.line}
@@ -53,7 +53,7 @@ export function HeroIntro({ visible = false }: Props) {
           >
             Emmanuel
           </motion.span>
-        </span>
+        </span>{" "}
         <span className={styles.lineMask}>
           <motion.span
             className={styles.line}
