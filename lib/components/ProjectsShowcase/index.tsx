@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { HangingTag } from "@/lib/components/HangingTag";
+import { caseStudyFor } from "@/lib/data/caseStudies";
 import { projects } from "@/lib/data/projects";
 import { largeViewportHeight } from "@/lib/utils/viewport";
 import styles from "./ProjectsShowcase.module.css";
@@ -98,6 +99,7 @@ export function ProjectsShowcase() {
   });
 
   const project = SHOWCASE[active];
+  const study = caseStudyFor(project.id);
 
   const scrollToProject = (i: number) => {
     const el = scrubRef.current;
@@ -205,6 +207,11 @@ export function ProjectsShowcase() {
                     ))}
                   </div>
                   <div className={styles.links}>
+                    {study && (
+                      <Link href={`/projects/${study.slug}`} className={`${styles.link} ${styles.linkPrimary}`}>
+                        Case Study
+                      </Link>
+                    )}
                     <a
                       href={project.live}
                       target="_blank"

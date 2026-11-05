@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { caseStudyFor } from "@/lib/data/caseStudies";
 import type { Project } from "@/lib/data/projects";
 import { useInViewFade } from "@/lib/hooks/useInViewFade";
 import styles from "./ProjectCard.module.css";
@@ -24,6 +25,7 @@ export function ProjectCard({
   className,
 }: Props) {
   const { ref, visible } = useInViewFade<HTMLDivElement>();
+  const study = project ? caseStudyFor(project.id) : undefined;
 
   return (
     <motion.div
@@ -75,6 +77,14 @@ export function ProjectCard({
             </div>
 
             <div className={styles.links}>
+              {study && (
+                <Link
+                  href={`/projects/${study.slug}`}
+                  className={`${styles.link} ${styles.linkPrimary} ${styles.cardLink}`}
+                >
+                  Case Study
+                </Link>
+              )}
               <a
                 href={project.live}
                 target="_blank"

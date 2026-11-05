@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { caseStudies } from "@/lib/data/caseStudies";
 
 const BASE_URL = "https://www.shiemo.dev";
 
@@ -22,5 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.5,
     },
+    ...caseStudies.map((c) => ({
+      url: `${BASE_URL}/projects/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
   ];
 }

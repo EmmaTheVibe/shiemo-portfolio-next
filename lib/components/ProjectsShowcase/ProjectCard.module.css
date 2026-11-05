@@ -143,6 +143,8 @@
 }
 
 .link {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -159,6 +161,18 @@
 
 .linkPrimary {
   color: var(--card-orange);
+}
+
+.cardLink {
+  position: static;
+}
+
+.cardLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 20px;
 }
 
 .linkPrimary:hover {
